@@ -1,0 +1,147 @@
+  /* ===== RESET DEFAULT STYLES ===== */
+    * {
+      margin: 0;                     /* Remove default margins */
+      padding: 0;                    /* Remove default padding */
+      box-sizing: border-box;        /* Include padding in width */
+      font-family: "Poppins", Arial, sans-serif; /* Global font */
+    }
+
+    body {
+      height: 100vh;                 /* Full viewport height */
+      background: #0f0f0f;           /* Dark background */
+      overflow: hidden;              /* Prevent scrolling */
+    }
+
+    /* ===== BACKGROUND WRAPPER ===== */
+    .background {
+      position: absolute;            /* Behind main content */
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Common style for all gradient circles */
+    .circle {
+      position: absolute;            /* Absolute positioning */
+      border-radius: 50%;            /* Circular shape */
+      filter: blur(70px);            /* Soft glow */
+      opacity: 0.9;                  /* Transparency */
+    }
+
+    /* Pink gradient circle */
+    .circle1 {
+      width: 350px;
+      height: 350px;
+      background: linear-gradient(45deg, #ff2f6d, #ff9a9e);
+      top: -120px;
+      left: -120px;
+    }
+
+    /* Purple-blue gradient circle */
+    .circle2 {
+      width: 420px;
+      height: 420px;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      bottom: -160px;
+      right: -120px;
+    }
+
+    /* Center blue accent */
+    .circle3 {
+      width: 260px;
+      height: 260px;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ===== SIGNUP CARD ===== */
+    .auth-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      padding: 30px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.12); /* Glass effect */
+      backdrop-filter: blur(16px);   /* Background blur */
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      color: white;
+      z-index: 10;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    /* ===== STEP CONTAINER ===== */
+    .step {
+      display: none;                 /* Hide all steps initially */
+    }
+
+    .step.active {
+      display: block;                /* Show active step */
+    }
+
+    /* Input & select styling */
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    /* Navigation buttons */
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 14px;
+      border: none;
+      background: #ff2f6d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Back button */
+    .btn.secondary {
+      background: #444;
+      margin-top: 8px;
+    }
+
+    /* Error message */
+    #errorMsg {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #ffb3b3;
+    }
+
+    /* Login link */
+    .login-text {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-text a {
+      color: #ff9a9e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  

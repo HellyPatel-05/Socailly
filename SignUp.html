@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up • Socially</title>
+  <link rel="stylesheet" href="SignUp.css">
+
+ 
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="background">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+
+  <!-- SIGNUP CARD -->
+  <div class="auth-container">
+    <h2>Create Account</h2>
+    <p class="subtitle">Step-by-step registration</p>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+      <input type="text" id="fullname" placeholder="Full Name">
+      <input type="date" id="dob">
+      <button class="btn" onclick="nextStep(1)">Next</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+      <select id="gender">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+      <input type="text" id="username" placeholder="Username">
+      <button class="btn" onclick="nextStep(2)">Next</button>
+      <button class="btn secondary" onclick="prevStep(2)">Back</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+      <input type="tel" id="mobile" placeholder="Mobile Number">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button class="btn" onclick="register()">Register</button>
+      <button class="btn secondary" onclick="prevStep(3)">Back</button>
+    </div>
+
+    <p id="errorMsg"></p>
+
+    <p class="login-text">
+      Already have an account?
+      <a href="SignIn.html">Sign In</a>
+    </p>
+  </div>
+
+  <script>
+    /* ===== MOVE TO NEXT STEP ===== */
+    function nextStep(step) {
+      // Clear previous error
+      errorMsg.textContent = "";
+
+      // Step 1 validation
+      if (step === 1) {
+        if (!fullname.value || !dob.value) {
+          errorMsg.textContent = "Please fill all details";
+          return;
+        }
+      }
+
+      // Step 2 validation
+      if (step === 2) {
+        if (!gender.value || !username.value) {
+          errorMsg.textContent = "Please complete this step";
+          return;
+        }
+      }
+
+      // Hide current step
+      document.getElementById(`step${step}`).classList.remove("active");
+
+      // Show next step
+      document.getElementById(`step${step + 1}`).classList.add("active");
+    }
+
+    /* ===== GO BACK TO PREVIOUS STEP ===== */
+    function prevStep(step) {
+      errorMsg.textContent = "";
+
+      document.getElementById(`step${step}`).classList.remove("active");
+      document.getElementById(`step${step - 1}`).classList.add("active");
+    }
+
+    /* ===== FINAL REGISTRATION ===== */
+    function register() {
+      // Validate last step
+      if (!mobile.value || !email.value || !password.value) {
+        errorMsg.textContent = "All fields are required";
+        return;
+      }
+
+      // Create user object
+      const user = {
+        fullname: fullname.value,
+        dob: dob.value,
+        gender: gender.value,
+        username: username.value,
+        mobile: mobile.value,
+        email: email.value,
+        password: password.value
+      };
+
+      // Get existing users
+      const users = JSON.parse(localStorage.getItem("sociallyUsers")) || [];
+
+      // Check duplicate email
+      if (users.some(u => u.email === user.email)) {
+        errorMsg.textContent = "Email already registered";
+        return;
+      }
+
+      // Save user
+      users.push(user);
+      localStorage.setItem("sociallyUsers", JSON.stringify(users));
+
+      alert("Registration successful!");
+      window.location.href = "signin.html";
+    }
+  </script>
+
+</body>
+</html>
