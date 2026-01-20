@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign In • Socially</title>
+  <link rel="stylesheet" href="SignIn.css" />
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="background">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+
+  <!-- Sign In Form -->
+  <div class="auth-container">
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Sign in to Socially</p>
+
+    <form id="signinForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+
+    <p class="register-text">
+      New to Socially?
+      <a href="#">Register</a>
+    </p>
+
+    <p id="errorMsg"></p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const form = document.getElementById("signinForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    /* DEMO USERS (remove when signup page is ready) */
+    if (!localStorage.getItem("sociallyUsers")) {
+      localStorage.setItem(
+        "sociallyUsers",
+        JSON.stringify([
+          { email: "test@socially.com", password: "123456" }
+        ])
+      );
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const users =
+        JSON.parse(localStorage.getItem("sociallyUsers")) || [];
+
+      const validUser = users.find(
+        user => user.email === email && user.password === password
+      );
+
+      if (validUser) {
+        localStorage.setItem(
+          "sociallyCurrentUser",
+          JSON.stringify(validUser)
+        );
+        alert("Login successful!");
+        // window.location.href = "feed.html";
+      } else {
+        errorMsg.textContent = "Invalid email or password";
+      }
+    });
+  </script>
+
+</body>
+</html>
